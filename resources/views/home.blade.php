@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <a href="{{ route('member.card') }}" class="btn btn-primary">{{ __('Download Member Card') }}</a>
                 </div>
             </div>
         </div>
