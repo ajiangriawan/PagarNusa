@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Profile') }}</div>
+                <div class="card-header">Profil Pengguna</div>
 
                 <div class="card-body">
                     @if (session('success'))
@@ -25,57 +26,111 @@
                         <div class="col-md-8">
                             <table class="table">
                                 <tr>
-                                    <th>{{ __('Name') }}</th>
+                                    <th>Nama</th>
                                     <td>{{ $user->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Email') }}</th>
+                                    <th>Email</th>
                                     <td>{{ $user->email }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Gender') }}</th>
+                                    <th>Jenis Kelamin</th>
                                     <td>{{ $user->gender }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Birth Place') }}</th>
+                                    <th>Tempat Lahir</th>
                                     <td>{{ $user->birth_place }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Birth Date') }}</th>
-                                    <td>{{ $user->birth_date }}</td>
+                                    <th>Tanggal Lahir</th>
+                                    <td>{{ $user->birth_date->format('d-m-Y') }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Address') }}</th>
+                                    <th>Alamat</th>
                                     <td>{{ $user->address }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Status') }}</th>
+                                    <th>Status</th>
                                     <td>{{ $user->status }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Occupation') }}</th>
+                                    <th>Pekerjaan</th>
                                     <td>{{ $user->occupation }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Member Number') }}</th>
+                                    <th>No. Anggota</th>
                                     <td>{{ $user->member_no }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Role') }}</th>
+                                    <th>Peran</th>
                                     <td>{{ $user->role }}</td>
                                 </tr>
-                                <tr>
+                                <tr hidden>
                                     <th>{{ __('Verified') }}</th>
                                     <td>{{ $user->verified ? 'Yes' : 'No' }}</td>
                                 </tr>
+                                @if ($user->member_no)
+                                <tr>
+                                    <th>Kartu Anggota</th>
+                                    <td>
+                                        <div class="id-card rounded">
+                                            <div class="card text-bg-light">
+                                                <img src="/images/background.jpg" class="card-img" alt="...">
+                                                <div class="card-img-overlay mt-3">
+                                                    <div class="row pt-4" style="width: 100%;">
+                                                        <div class="col-10">
+                                                            <div class="row">
+                                                                <div class="col-4 p-0">
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>No. Anggota</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Nama</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Jenis Kelamin</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Tempat Lahir</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Tanggal Lahir</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Alamat</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Status</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>Pekerjaan</strong></p>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->member_no }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->name }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->gender }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->birth_place }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->birth_date->format('d-m-Y') }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->address }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->status }}</strong></p>
+                                                                    <p style="font-size:xx-small" class="m-0"><strong>: {{ $user->occupation }}</strong></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2 d-flex align-items-center justify-content-center ps-4">
+                                                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt="Profile Picture" class="profile-pic">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Display ID Card image 
+                                        <img src="{{ asset('storage/idcards/' . $user->id.'_idcard.jpg') }}" alt="ID Card">
+                                    -->
+                                    </td>
+                                </tr>
+                                @endif
                             </table>
                         </div>
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" class="btn btn-primary">{{ __('Edit Profile') }}</a>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-primary">Ubah Profil</a>
+                    <button id="download-btn" class="btn btn-primary">Unduh Kartu Anggota</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            window.location.href = '{{ route('user.idcard', ['id' => $user->id]) }}';
+        });
+    </script>
+
 @endsection

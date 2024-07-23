@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MemberCardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\IDCardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +22,7 @@ Route::get('/', function () {
 
 */
 
-Auth::routes(
-    
-);
+Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,8 +38,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('/profile/{id}', [ProfileController::class, 'show_anggota'])->name('profileanggota.show');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/member/card', [MemberCardController::class, 'show'])->name('member.card');
-    Route::get('/member/card/download', [MemberCardController::class, 'download'])->name('member.card.download');
-});
+Route::get('/user/{id}/idcard', [IDCardController::class, 'showIdCard'])->name('user.idcard');
+
+
 

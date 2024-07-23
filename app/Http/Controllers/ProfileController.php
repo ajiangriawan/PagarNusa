@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Support\Facades\Response;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -21,6 +23,7 @@ class ProfileController extends Controller
         return view('profile.show', compact('user'));
     }
 
+    
     public function edit()
     {
         $user = Auth::user();
@@ -42,7 +45,6 @@ class ProfileController extends Controller
             'status' => ['nullable', 'string'],
             'occupation' => ['nullable', 'string'],
             'profile_pic' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'member_no' => ['nullable', 'string', 'max:255', 'unique:users,member_no,' . $user->id],
         ]);
 
         if ($request->hasFile('profile_pic')) {
@@ -64,7 +66,6 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->status = $request->status;
         $user->occupation = $request->occupation;
-        $user->member_no = $request->member_no;
         $user->save();
 
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
@@ -75,4 +76,12 @@ class ProfileController extends Controller
         $user = User::find($id);
         return view('profile.showanggota', compact('user'));
     }
+
+    public function idcard($id)
+    {
+        $user = User::find($id);
+        return view('profile.idcard', compact('user'));
+    }
+
+
 }

@@ -66,8 +66,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary">{{ __('Edit Profile') }}</a>
-                    
+                   
                 </div>
             </div>
         </div>

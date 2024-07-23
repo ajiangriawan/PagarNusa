@@ -1,10 +1,11 @@
 <?php
 
-// app/Http/Controllers/AdminController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Intervention\Image\Facades\Image; // Menggunakan Image dari namespace Intervention\Image
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -17,12 +18,16 @@ class AdminController extends Controller
     public function confirm(Request $request)
     {
         $memberIds = $request->input('member_ids');
-        $now = now();
-        $yearMonth = $now->format('Ym');
-
+        $date = Carbon::now();
+        $year = $date->format('y');
+        $month = $date->format('m');
+        $day = $date->format('d');
+        
         foreach ($memberIds as $index => $id) {
             $member = User::find($id);
-            $memberNumber = $yearMonth . sprintf('%03d', $index + 1);
+            $count = User::whereDate('created_at', $date->toDateString())->count() + 1;
+            $sequence = str_pad($count, 3, '0', STR_PAD_LEFT);
+            $memberNumber = "{$year}.{$month}.{$day}.{$sequence}";
             $member->member_no = $memberNumber;
             $member->verified = true;
             $member->save();

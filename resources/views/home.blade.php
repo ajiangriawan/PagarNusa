@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1>Ini berisi konten setelah Login</h1>
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -15,7 +16,6 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{ route('member.card') }}" class="btn btn-primary">{{ __('Download Member Card') }}</a>
                 </div>
             </div>
         </div>

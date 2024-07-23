@@ -1,0 +1,24 @@
+.card-img-overlay.mt-3 {
+    align-content: center;
+}
+
+main.py-4 {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.profile-pic {
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.id-card-content {
+    margin-top: 90px;
+    font-size: 12px;
+}
+.download-btn {
+    margin-top: 20px;
+}
