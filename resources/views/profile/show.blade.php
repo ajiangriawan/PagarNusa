@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Profil Pengguna</div>
+                <div class="card-header text-center bg-success text-white">Profil Pengguna</div>
 
                 <div class="card-body">
                     @if (session('success'))
@@ -119,8 +119,8 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('profile.edit') }}" class="btn btn-primary">Ubah Profil</a>
-                    <button id="download-btn" class="btn btn-primary">Unduh Kartu Anggota</button>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-success">Ubah Profil</a>
+                    <button id="download-btn" class="btn btn-success">Unduh Kartu Anggota</button>
                 </div>
             </div>
         </div>

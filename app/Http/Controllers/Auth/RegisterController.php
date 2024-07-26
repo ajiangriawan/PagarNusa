@@ -25,8 +25,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'name' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'in:male,female'],
-            'role' => ['required', 'string', 'in:anggota'], // Validasi role tetap ada untuk memastikan hanya "anggota"
+            'gender' => ['required', 'in:Laki-Laki,Perempuan'],
+            'role' => ['required', 'string', 'in:anggota'],
         ]);
     }
 
@@ -37,6 +37,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'name' => $data['name'],
             'gender' => $data['gender'],
+            'birth_date' => $data['birth_date'],
             'role' => 'anggota', // Mengatur default role menjadi anggota
             'verified' => false, // Atur nilai default untuk verified jika diperlukan
             

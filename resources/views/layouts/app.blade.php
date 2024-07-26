@@ -9,8 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
     <style>
-        
         .id-card-container {
             width: 600px;
             height: 350px;
@@ -24,30 +32,7 @@
             background-image: url('/images/background.jpg');
             background-size: cover;
         }
-
-        .profile-pic {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .id-card-content {
-            font-size: 12px;
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .download-btn {
-            margin-top: 20px;
-        }
     </style>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 
 <body>
@@ -76,16 +61,26 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">Masuk</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">Daftar</a>
                         </li>
                         @endif
                         @else
+                        
+                        @if (Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        </li>
+                        @endif
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('profile.show') }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
@@ -115,6 +110,14 @@
             @yield('content')
         </main>
     </div>
+    <div class="footer text-center bg-success">
+        <p>&copy; 2024 Pencak Silat Pagar Nusa. All Rights Reserved.</p>
+        <p><a href="portofolio-ajiangriawan.glitch.me">Asticom.tech</a> | <a href="https://www.instagram.com/ajiangriawan">Aji Angri Awan</a></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

@@ -38,7 +38,7 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'gender' => ['required', 'in:male,female'],
+            'gender' => ['required', 'in:Laki-Laki,Perempuan'],
             'birth_place' => ['nullable', 'string', 'max:255'],
             'birth_date' => ['nullable', 'date'],
             'address' => ['nullable', 'string'],

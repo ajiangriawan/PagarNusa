@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Ubah Profil</div>
+                <div class="card-header text-center bg-success text-white">Ubah Profil</div>
 
                 @if ($errors->any())
                 <div>
@@ -69,8 +69,8 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-end">Jenis Kelamin</label>
                             <div class="col-md-6">
                                 <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" required>
-                                    <option value="male" {{ old('gender', $user->gender) == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
-                                    <option value="female" {{ old('gender', $user->gender) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="Laki-Laki" {{ old('gender', $user->gender) == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                    <option value="Perempuan" {{ old('gender', $user->gender) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">
@@ -158,7 +158,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     ubah Profil
                                 </button>
                             </div>
